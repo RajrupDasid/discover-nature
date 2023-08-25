@@ -7,12 +7,13 @@
 }
 
 :root{
-    --primary: #00a52f;
+    --primary: #03be38;
 }
 
 body{
     background: #000;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 /*header*/
 header{
@@ -59,7 +60,7 @@ header{
     opacity: 0;
     visibility: hidden;
     transition: 0.3s;
-   }
+}
    
 .nav li:hover::before{
     opacity: 1;
@@ -104,9 +105,8 @@ header{
 /* mobile menu */
 
 .menu{
-    display: block;
+    display: none;
     transition: 0.3s;
-    visibility: hidden;
 }
 
 .menu ion-icon {
@@ -121,9 +121,64 @@ header{
 
 /* mobile menu  the icon*/
 .nav-mobile{
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    z-index: 900;
+    gap: 20px;
+    opacity: 0;
+    visibility: hidden;
 }
 
+.nav-mobile.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav-mobile li{
+    position: relative;
+    list-style: none;
+}
+
+.nav-mobile li a{
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 10px;
+}
+
+.nav-mobile li::before{
+    position: absolute;
+    bottom: -10px;   
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+    height: 2px;
+    width: 50%;
+    background: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
+.nav-mobile li:hover::before{
+    opacity: 1;
+    visibility: visible;
+    background: orangered;
+}
+   
 /* Swiper */
 
 .swiper{
@@ -143,10 +198,60 @@ header{
     z-index: 1000;
 }
 
-.swiper .swiper-button-prev{
+.swiper .swiper-button-prev,
+.swiper .swiper-button-next{
     width: 50px;
     height: 50px;
 }
+
+
+.swiper .swiper-button-prev::after,
+.swiper .swiper-button-next::after{
+    font-size: 30px;
+    line-height: 0;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.5);
+    border: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+.swiper .swiper-button-prev:hover,
+.swiper .swiper-button-next:hover{
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.swiper .swiper-pagination{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.swiper .swiper-pagination .swiper-pagination-bullet{
+    width: 12px;
+    height: 12px;
+    background: transparent;
+    opacity: 1;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+}
+
+
+.swiper .swiper-pagination .swiper-pagination-bullet-active{
+    background: var(--primary);
+}
+
+
 
 /* Banner */
 
@@ -225,6 +330,9 @@ header{
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
+    -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000000 0 0);
+    -webkit-mask-clip: text,padding-box;
+    -webkit-mask-composite: xor;
 }
 
 .content-left::before{
@@ -340,4 +448,217 @@ header{
     width: 50%;
     height: 3px;
     background: var(--primary);
+}
+
+.drop{
+    position: absolute;
+    left: 75%;
+    top: 78%;
+    transform: translate(-50%,-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    width: 300px;
+    height: 300px;
+    box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.05),
+    25px 35px 20px rgba(0, 0, 0, 0.05),25px 30px 30px rgba(0, 0, 0, 0.05)
+    inset -20px -20px 25px rgba(255, 255, 255, 0.7) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    z-index: 1100;
+}
+
+.drop video{
+    width: 75%;
+    height: 75%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.drop,
+.drop video{
+    border-radius: 61% 39% 39% 61% / 50% 37% 63% 50%;
+}
+
+.drop:hover,
+.drop:hover video{
+    border-radius: 50%;
+}
+/* footer */
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 100px;
+    background: transparent;
+    z-index: 1000;
+}
+
+.sci{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.sci li{
+    list-style: none;
+}
+
+.sci li a{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.3em;
+    transition: 0.3s;
+}
+
+.ask-us{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 2em;
+    padding: 10px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.chat:hover{
+    background: #ffffff;
+    color: var(--primary);
+}
+
+.ask-us p{
+    color: #ffffff;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+/* Slight adjust needed for user with smaller pc screen*/
+/* for 13 inch screen */
+@media(max-width: 1920px){
+    .banner .content-left h1{
+        font-size: 15em;
+        letter-spacing: 2px;
+    }
+    .banner .content-right h1{
+        font-size: 15em;
+        letter-spacing: 2px;
+    }
+}
+
+/* Responsive design */
+@media  (max-width: 600px){
+    header{
+        padding: 20px 30px;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    .nav{
+        display: none;
+    }
+    .menu{
+        display: block;
+    }
+
+    .banner{
+        padding: 120px 30px 100px;
+        flex-direction: column;
+    }
+
+    .banner .content-left{
+        width: 100%;
+        height: 50vh;
+        padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: center;
+    }
+    .banner .content-right{
+        right: 0;
+        top: 50%;
+        width: 100%;
+        height: 50vh;
+        padding-left: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: center;
+    }
+    .banner .content-right .text-side{
+        right: -95px;
+    }
+
+    .banner .content-left h1{
+        font-weight: 500;
+        font-size: 10em;
+        letter-spacing: 2px;
+        line-height: 1em;
+        margin-bottom: 0;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        text-align: end;
+        margin-right: 60%;
+    }
+
+    .banner .content-right h1{
+        font-weight: 500;
+        font-size: 10em;
+        letter-spacing: 2px;
+        line-height: 1em;
+        margin-bottom: 0;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        text-align: start;
+        margin-right: 60%;
+    }
+
+    .banner .content-left .description{
+        position: absolute;
+        left: 40%;
+        bottom: 10%;
+        width: 60%;
+        padding: 0 20px;
+    }
+
+    .banner .content-left h3{
+        font-size: 1.2em;
+    }
+
+    .banner .shade .map{
+        width: 230px;
+        height: 210px;
+        left: 65%;
+    }
+
+    .drop{
+        left: 65%;
+        top: 68%;
+        width: 230px;
+        height: 230px;
+    }
+
+    .swiper .control{
+        bottom: 80px;
+    }
+    
+    footer{
+        padding: 20px 30px;
+    }
+
 }
