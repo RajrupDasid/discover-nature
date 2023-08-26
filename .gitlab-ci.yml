@@ -10,6 +10,8 @@ cache:
 
 before_script:
   - gem install bundler
+  - bundle init
+  - bundle add jekyll
   - bundle config set --local path 'vendor'
 
 pages:
