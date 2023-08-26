@@ -10,7 +10,7 @@ cache:
 
 before_script:
   - gem install bundler
-  - bundle install --path vendor
+  - bundle config set --local path 'vendor'
 
 pages:
   stage: deploy
